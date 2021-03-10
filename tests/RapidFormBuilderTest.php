@@ -16,27 +16,30 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormError;
 
 class RapidFormBuilderTest extends FormToJsonBundleTestCase
 {
     public function testTextTransformer(): void
     {
         $testData = new stdClass();
-        $testData->text = 'HelloWorld';
-        $testData->textarea = 'Hello World !';
-        $testData->email = 'hello@world.com';
-        $testData->integer = 1;
-        $testData->money = '0.00';
-        $testData->number = '0.00';
-        $testData->password = 'hunter2';
-        $testData->percent = '0.5';
+        $testData->textField = 'HelloWorld';
+        $testData->textareaField = 'Hello World !';
+        $testData->emailField = 'hello@world.com';
+        $testData->integerField = 1;
+        $testData->moneyField = '0.00';
+        $testData->numberField = '0.00';
+        $testData->passwordField = 'hunter2';
+        $testData->percentField = '0.5';
 
         $form = $this->factory->createNamedBuilder('test', FormType::class, $testData)
-            ->add('text', TextType::class)
-            ->add('textarea', TextareaType::class)
-            ->add('email', EmailType::class)
-            ->add('integer', IntegerType::class)
+            ->add('textField', TextType::class)
+            ->add('textareaField', TextareaType::class)
+            ->add('emailField', EmailType::class)
+            ->add('integerField', IntegerType::class)
             ->getForm();
+
+        $form->get('textField')->addError(new FormError('Something is broken!'));
 
         $resolver = new FormResolver();
         $resolver->addTransformer(new TextTypeTransformer($this->translator));

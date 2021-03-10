@@ -57,7 +57,12 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
         }
 
         foreach ($form->getErrors() as $error) {
-            $schema['errors'] = $this->translator->trans($error->getMessage(), $error->getMessageParameters());
+            $translateResult = $this->translator->trans($error->getMessage(), $error->getMessageParameters());
+            if ($translateResult !== null) {
+                $schema['errors'][] = $translateResult;
+            } else {
+                $schema['errors'][] = $error->getMessage();
+            }
         }
 
         return $schema;
