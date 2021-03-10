@@ -1,0 +1,45 @@
+{
+    "name": "ansien/form-to-json-bundle",
+    "description": "Convert Symfony forms to JSON with ease",
+    "keywords": [
+        "ansien",
+        "form-to-json-bundle",
+        "symfony",
+        "bundle",
+        "form"
+    ],
+    "version": "1.0.0",
+    "type": "symfony-bundle",
+    "require": {
+        "php": ">=8.0",
+        "symfony/config": "^5.2",
+        "symfony/form": "^5.2",
+        "symfony/framework-bundle": "^5.2"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "phpro/grumphp": "^1.3",
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ansien\\FormToJsonBundle\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ansien\\FormToJsonBundle\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "format": "vendor/bin/php-cs-fixer fix --allow-risky=yes"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

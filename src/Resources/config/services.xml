@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="false" autoconfigure="true" autowire="true"/>
+        <!-- Public services -->
+        <service id="Ansien\FormToJsonBundle\Context\FormResolverInterface"
+                 class="Ansien\FormToJsonBundle\Context\FormResolver"
+                 public="true">
+            <argument type="tagged_iterator" tag="form_to_json_bundle.type_transformer"/>
+        </service>
+        <!-- Transformers -->
+        <instanceof id="Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface">
+            <tag name="form_to_json_bundle.type_transformer"/>
+        </instanceof>
+    </services>
+</container>
