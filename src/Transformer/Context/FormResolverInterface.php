@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Ansien\FormToJsonBundle\Transformer\Context;
 
-use Ansien\FormToJsonBundle\Transformer\TransformerInterface;
+use Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface;
 
 interface FormResolverInterface
 {
-    public function addTransformer(TransformerInterface $transformer): void;
+    public function addTransformer(TypeTransformerInterface $transformer): void;
 }

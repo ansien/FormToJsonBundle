@@ -14,7 +14,8 @@
         "php": ">=8.0",
         "symfony/config": "^5.2",
         "symfony/form": "^5.2",
-        "symfony/framework-bundle": "^5.2"
+        "symfony/framework-bundle": "^5.2",
+        "symfony/translation": "^5.2"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.18",
@@ -24,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Ansien\\FormToJsonBundle\\": "src"
+            "Ansien\\FormToJsonBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ansien\\FormToJsonBundle\\Tests\\": "tests"
+            "Ansien\\FormToJsonBundle\\Tests\\": "tests/"
         }
     },
     "scripts": {

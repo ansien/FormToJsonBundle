@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Ansien\FormToJsonBundle\Transformer\Context;
 
-use Ansien\FormToJsonBundle\Transformer\TransformerInterface;
+use Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface;
 use RuntimeException;
 use Symfony\Component\Form\FormInterface;
 
 class FormResolver implements FormResolverInterface
 {
     /**
-     * @var TransformerInterface[]
+     * @var TypeTransformerInterface[]
      */
     private array $transformers = [];
 
@@ -22,7 +22,7 @@ class FormResolver implements FormResolverInterface
         }
     }
 
-    public function addTransformer(TransformerInterface $transformer): void
+    public function addTransformer(TypeTransformerInterface $transformer): void
     {
         $type = $transformer::getType();
 
@@ -33,7 +33,7 @@ class FormResolver implements FormResolverInterface
         $this->transformers[$type] = $transformer;
     }
 
-    public function resolve(FormInterface $form): TransformerInterface
+    public function resolve(FormInterface $form): TypeTransformerInterface
     {
         $type = $form->getConfig()->getType()->getInnerType()::class;
 

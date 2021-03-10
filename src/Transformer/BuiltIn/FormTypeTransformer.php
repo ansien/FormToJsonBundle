@@ -8,7 +8,7 @@ use Ansien\FormToJsonBundle\Transformer\Context\FormResolver;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 
-class FormTransformer extends AbstractTransformer
+class FormTypeTransformer extends AbstractTypeTransformer
 {
     private FormResolver $resolver;
 

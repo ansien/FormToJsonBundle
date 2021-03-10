@@ -6,7 +6,7 @@ namespace Ansien\FormToJsonBundle\Transformer;
 
 use Symfony\Component\Form\FormInterface;
 
-interface TransformerInterface
+interface TypeTransformerInterface
 {
     public function transform(FormInterface $form): array;
 }
