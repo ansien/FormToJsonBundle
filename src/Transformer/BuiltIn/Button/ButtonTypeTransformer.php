@@ -9,9 +9,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/reset.html
+ * @see https://symfony.com/doc/current/reference/forms/types/button.html
  */
-class ResetTypeTypeTransformer extends AbstractTypeTransformer
+class ButtonTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(protected TranslatorInterface $translator)
     {
@@ -31,6 +31,6 @@ class ResetTypeTypeTransformer extends AbstractTypeTransformer
 
     public static function getBlockPrefix(): string
     {
-        return 'reset';
+        return 'button';
     }
 }

@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Ansien\FormToJsonBundle\Tests;
 
 use Ansien\FormToJsonBundle\Tests\TestClasses\SuperFormType;
-use Ansien\FormToJsonBundle\Transformer\BuiltIn\Button\ButtonTypeTypeTransformer;
-use Ansien\FormToJsonBundle\Transformer\BuiltIn\Button\ResetTypeTypeTransformer;
-use Ansien\FormToJsonBundle\Transformer\BuiltIn\Button\SubmitTypeTypeTransformer;
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\Button\ButtonTypeTransformer;
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\Button\ResetTypeTransformer;
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\Button\SubmitTypeTransformer;
 use Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\ChoiceTypeTypeTransformer;
 use Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\CountryTypeTypeTransformer;
 use Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\CurrencyTypeTypeTransformer;
@@ -1884,9 +1884,9 @@ class TransformTest extends FormToJsonBundleTestCase
         // Hidden
         $transformerContext->addTransformer(new HiddenTypeTransformer($this->translator));
         // Button
-        $transformerContext->addTransformer(new ButtonTypeTypeTransformer($this->translator));
-        $transformerContext->addTransformer(new ResetTypeTypeTransformer($this->translator));
-        $transformerContext->addTransformer(new SubmitTypeTypeTransformer($this->translator));
+        $transformerContext->addTransformer(new ButtonTypeTransformer($this->translator));
+        $transformerContext->addTransformer(new ResetTypeTransformer($this->translator));
+        $transformerContext->addTransformer(new SubmitTypeTransformer($this->translator));
 
         $result = $transformer->transform($form);
 

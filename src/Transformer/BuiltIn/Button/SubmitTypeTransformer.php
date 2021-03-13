@@ -11,7 +11,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * @see https://symfony.com/doc/current/reference/forms/types/submit.html
  */
-class SubmitTypeTypeTransformer extends AbstractTypeTransformer
+class SubmitTypeTransformer extends AbstractTypeTransformer
 {
     public const OPTIONS = [
         'validate',

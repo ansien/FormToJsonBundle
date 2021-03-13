@@ -5,15 +5,18 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!-- Public services -->
+        <!-- Public -->
         <service id="Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface"
                  class="Ansien\FormToJsonBundle\Transformer\Service\FormTransformer"
                  public="true">
             <argument type="service" id="Ansien\FormToJsonBundle\Transformer\Context\TransformerContext"/>
         </service>
 
-        <!-- Private services -->
+        <!-- Private -->
         <service id="Ansien\FormToJsonBundle\Transformer\Context\TransformerContext" />
+        <instanceof id="Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface">
+            <tag name="form_to_json_bundle.type_transformer"/>
+        </instanceof>
 
         <!-- Builtin Transformers -->
         <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\FormTypeTransformer">
@@ -89,10 +92,10 @@
         </service>
 
         <!-- DateTime -->
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\DateTypeTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\DateTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\DateIntervalTypeTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\DateIntervalTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
         <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\DateTimeTypeTransformer">
@@ -109,13 +112,13 @@
         </service>
 
         <!-- Other -->
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\CheckboxTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Other\CheckboxTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\FileTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Other\FileTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\RadioTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Other\RadioTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
 
@@ -133,24 +136,14 @@
         </service>
 
         <!-- Button -->
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Hidden\ButtonTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Button\ButtonTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Hidden\ResetTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Button\ResetTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Hidden\SubmitTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Button\SubmitTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-
-        <!-- Field Groups -->
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\CollectionTypeTransformer">
-            <argument type="service" id="translator"/>
-            <argument type="service" id="Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface"/>
-        </service>
-        <!-- Transformers -->
-        <instanceof id="Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface">
-            <tag name="form_to_json_bundle.type_transformer"/>
-        </instanceof>
     </services>
 </container>
