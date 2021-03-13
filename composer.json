@@ -8,7 +8,7 @@
         "bundle",
         "form"
     ],
-    "version": "0.0.2",
+    "version": "0.0.3",
     "type": "symfony-bundle",
     "require": {
         "php": ">=8.0",
