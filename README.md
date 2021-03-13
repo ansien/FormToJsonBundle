@@ -16,6 +16,7 @@ composer require ansien/form-to-json-bundle
 
 ## Usage
 
+Controller:
 ```php
 <?php
 
@@ -44,6 +45,41 @@ class ExampleController extends AbstractController
         $form = $this->createForm(ExampleType::class, $example);
         
         return new JsonResponse($this->formTransformer->transform($form));
+    }
+}
+```
+
+Example output:
+```json
+{
+    "id": "example",
+    "name": "example",
+    "label": "Example form",
+    "unique_block_prefix": "_example",
+    "value": null,
+    "required": true,
+    "help": null,
+    "compound": true,
+    "method": "POST",
+    "action": "",
+    "attr": [],
+    "children": {
+        "text": {
+            "id": "example_text",
+            "name": "text",
+            "label": null,
+            "unique_block_prefix": "_example_text",
+            "value": "Hello!",
+            "required": true,
+            "help": null,
+            "compound": false,
+            "method": "POST",
+            "action": "",
+            "attr": {
+                "class": "test-class"
+            },
+            "errors": []
+        }
     }
 }
 ```
