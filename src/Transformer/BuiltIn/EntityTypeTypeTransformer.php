@@ -9,9 +9,9 @@ use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/money.html
+ * @see https://symfony.com/doc/current/reference/forms/types/choice.html
  */
-class MoneyTypeTransformer extends AbstractTypeTransformer
+class EntityTypeTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(protected TranslatorInterface $translator)
     {
@@ -23,12 +23,23 @@ class MoneyTypeTransformer extends AbstractTypeTransformer
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
         $schema = $this->hydrateExtraOptions($form, $schema, [
-            'currency',
-            'divisor',
-            'grouping',
-            'rounding_mode',
-            'html5',
-            'scale',
+            'class',
+            'em',
+            'query_builder',
+            // Inherited
+            'choices',
+            'choice_attr',
+            'choice_filter',
+            'choice_label',
+            'choice_loader',
+            'choice_name',
+            'choice_translation_domain',
+            'choice_value',
+            'expanded',
+            'group_by',
+            'multiple',
+            'placeholder',
+            'preferred_choices',
         ]);
         $schema = $this->hydrateErrors($formView, $schema);
 
@@ -37,6 +48,6 @@ class MoneyTypeTransformer extends AbstractTypeTransformer
 
     public static function getForBlockPrefix(): string
     {
-        return 'money';
+        return 'entity';
     }
 }

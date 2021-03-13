@@ -9,9 +9,9 @@ use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/textarea.html
+ * @see https://symfony.com/doc/current/reference/forms/types/date.html
  */
-class TextareaTypeTransformer extends AbstractTypeTransformer
+class DateTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(protected TranslatorInterface $translator)
     {
@@ -29,6 +29,6 @@ class TextareaTypeTransformer extends AbstractTypeTransformer
 
     public static function getForBlockPrefix(): string
     {
-        return 'textarea';
+        return 'date';
     }
 }

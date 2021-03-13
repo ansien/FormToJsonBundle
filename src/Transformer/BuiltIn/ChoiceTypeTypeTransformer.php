@@ -9,9 +9,9 @@ use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/textarea.html
+ * @see https://symfony.com/doc/current/reference/forms/types/choice.html
  */
-class TextareaTypeTransformer extends AbstractTypeTransformer
+class ChoiceTypeTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(protected TranslatorInterface $translator)
     {
@@ -22,6 +22,21 @@ class TextareaTypeTransformer extends AbstractTypeTransformer
         $schema = [];
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
+        $schema = $this->hydrateExtraOptions($form, $schema, [
+            'choices',
+            'choice_attr',
+            'choice_filter',
+            'choice_label',
+            'choice_loader',
+            'choice_name',
+            'choice_translation_domain',
+            'choice_value',
+            'expanded',
+            'group_by',
+            'multiple',
+            'placeholder',
+            'preferred_choices',
+        ]);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
@@ -29,6 +44,6 @@ class TextareaTypeTransformer extends AbstractTypeTransformer
 
     public static function getForBlockPrefix(): string
     {
-        return 'textarea';
+        return 'choice';
     }
 }

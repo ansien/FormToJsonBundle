@@ -6,57 +6,56 @@ namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
 
 use Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractTypeTransformer implements TypeTransformerInterface
 {
     protected TranslatorInterface $translator;
 
-    abstract public function transform(FormInterface $form): array;
+    abstract public function transform(FormInterface $form, FormView $formView): array;
 
-    abstract public static function getType(): string;
+    abstract public static function getForBlockPrefix(): string;
 
-    protected function hydrateConfig(FormInterface $form, array $schema): array
+    protected function hydrateBasicOptions(FormView $formView, array $schema): array
+    {
+        $schema['id'] = $formView->vars['id'];
+        $schema['name'] = $formView->vars['name'];
+        $schema['full_name'] = $formView->vars['full_name'];
+        $schema['label'] = $formView->vars['label'];
+        $schema['block_prefixes'] = $formView->vars['block_prefixes'];
+        $schema['unique_block_prefix'] = $formView->vars['unique_block_prefix'];
+        $schema['valid'] = $formView->vars['valid'];
+        $schema['data'] = $formView->vars['data'];
+        $schema['value'] = $formView->vars['value'];
+        $schema['required'] = $formView->vars['required'];
+        $schema['help'] = $formView->vars['help'];
+        $schema['compound'] = $formView->vars['compound'];
+        $schema['method'] = $formView->vars['method'];
+        $schema['action'] = $formView->vars['action'];
+        $schema['submitted'] = $formView->vars['submitted'];
+
+        return $schema;
+    }
+
+    protected function hydrateExtraOptions(FormInterface $form, array $schema, array $options): array
     {
         $config = $form->getConfig();
 
-        $schema['config']['name'] = $config->getName();
-        $schema['config']['label'] = $this->getLabel($form);
-        $schema['config']['mapped'] = $config->getMapped();
-        $schema['config']['compound'] = $config->getCompound();
-        $schema['config']['required'] = $config->getRequired();
-        $schema['config']['disabled'] = $config->getDisabled();
-        $schema['config']['action'] = $config->getAction();
-        $schema['config']['type'] = [
-            'blockPrefix' => $config->getType()->getBlockPrefix(),
-            'innerType' => $config->getType()->getInnerType(),
-        ];
-        $schema['config']['option'] = [
-            'attr' => $form->getConfig()->getOption('attr'),
-        ];
+        $schema['options'] = [];
 
-        return $schema;
-    }
-
-    protected function hydrateValues(FormInterface $form, array $schema): array
-    {
-        $schema['data'] = [
-            'model' => $form->getData(),
-            'norm' => $form->getNormData(),
-            'view' => $form->getViewData(),
-            'extra' => $form->getExtraData(),
-        ];
-
-        return $schema;
-    }
-
-    protected function hydrateErrors(FormInterface $form, array $schema): array
-    {
-        if (!array_key_exists('errors', $schema)) {
-            $schema['errors'] = [];
+        foreach ($options as $option) {
+            $schema['options'][$option] = $config->getOption($option);
         }
 
-        foreach ($form->getErrors() as $error) {
+        return $schema;
+    }
+
+    protected function hydrateErrors(FormView $formView, array $schema): array
+    {
+        $schema['errors'] = [];
+
+        foreach ($formView->vars['errors'] as $error) {
             $translateResult = $this->translator->trans($error->getMessage(), $error->getMessageParameters());
             if ($translateResult !== null) {
                 $schema['errors'][] = $translateResult;
@@ -66,27 +65,5 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
         }
 
         return $schema;
-    }
-
-    protected function getLabel(FormInterface $form): ?string
-    {
-        $translationDomain = $form->getConfig()->getOption('translation_domain');
-
-        if ($label = $form->getConfig()->getOption('label')) {
-            return $this->translator->trans($label, [], $translationDomain);
-        } else {
-            return $this->translator->trans($form->getName(), [], $translationDomain);
-        }
-    }
-
-    protected function getDescription(FormInterface $form): ?string
-    {
-        $formConfig = $form->getConfig();
-
-        if ($help = $formConfig->getOption('help', '')) {
-            return $this->translator->trans($help);
-        }
-
-        return null;
     }
 }

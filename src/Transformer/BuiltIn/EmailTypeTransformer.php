@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
 
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -13,26 +13,22 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class EmailTypeTransformer extends AbstractTypeTransformer
 {
-    protected TranslatorInterface $translator;
-
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(protected TranslatorInterface $translator)
     {
-        $this->translator = $translator;
     }
 
-    public function transform(FormInterface $form): array
+    public function transform(FormInterface $form, FormView $formView): array
     {
         $schema = [];
 
-        $schema = $this->hydrateConfig($form, $schema);
-        $schema = $this->hydrateValues($form, $schema);
-        $schema = $this->hydrateErrors($form, $schema);
+        $schema = $this->hydrateBasicOptions($formView, $schema);
+        $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
     }
 
-    public static function getType(): string
+    public static function getForBlockPrefix(): string
     {
-        return EmailType::class;
+        return 'email';
     }
 }

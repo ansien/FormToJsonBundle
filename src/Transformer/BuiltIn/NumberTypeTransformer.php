@@ -9,9 +9,9 @@ use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/textarea.html
+ * @see https://symfony.com/doc/current/reference/forms/types/number.html
  */
-class TextareaTypeTransformer extends AbstractTypeTransformer
+class NumberTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(protected TranslatorInterface $translator)
     {
@@ -22,6 +22,13 @@ class TextareaTypeTransformer extends AbstractTypeTransformer
         $schema = [];
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
+        $schema = $this->hydrateExtraOptions($form, $schema, [
+            'grouping',
+            'html5',
+            'input',
+            'scale',
+            'rounding_mode',
+        ]);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
@@ -29,6 +36,6 @@ class TextareaTypeTransformer extends AbstractTypeTransformer
 
     public static function getForBlockPrefix(): string
     {
-        return 'textarea';
+        return 'integer';
     }
 }

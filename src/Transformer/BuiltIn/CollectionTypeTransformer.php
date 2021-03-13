@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
 
 use Ansien\FormToJsonBundle\Transformer\Context\FormResolver;
+use RuntimeException;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/form.html
+ * @see https://symfony.com/doc/current/reference/forms/types/collection.html
  */
-class FormTypeTransformer extends AbstractTypeTransformer
+class CollectionTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(
         protected TranslatorInterface $translator,
@@ -24,9 +25,15 @@ class FormTypeTransformer extends AbstractTypeTransformer
     {
         $schema = [];
 
+        $config = $form->getConfig();
+
+        if ($config->getAttribute('prototype') === null) {
+            throw new RuntimeException('Please set "allow_add" to true to allow transformation of a CollectionType.');
+        }
+
         $schema = $this->hydrateBasicOptions($formView, $schema);
 
-        foreach ($form->all() as $key => $childForm) {
+        foreach ($config->getAttribute('prototype') as $key => $childForm) {
             $childFormView = $childForm->createView();
             $transformer = $this->resolver->resolve($childFormView);
             $schema['children'][$key] = $transformer->transform($childForm, $childFormView);
@@ -39,6 +46,6 @@ class FormTypeTransformer extends AbstractTypeTransformer
 
     public static function getForBlockPrefix(): string
     {
-        return 'form';
+        return 'collection';
     }
 }

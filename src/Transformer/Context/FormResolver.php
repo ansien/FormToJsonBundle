@@ -7,6 +7,8 @@ namespace Ansien\FormToJsonBundle\Transformer\Context;
 use Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface;
 use RuntimeException;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FormResolver implements FormResolverInterface
 {
@@ -15,39 +17,49 @@ class FormResolver implements FormResolverInterface
      */
     private array $transformers = [];
 
-    public function __construct(iterable $transformers = [])
+    private TranslatorInterface $translator;
+
+    public function __construct(iterable $transformers, TranslatorInterface $translator)
     {
         foreach ($transformers as $transformer) {
             $this->addTransformer($transformer);
         }
+
+        $this->translator = $translator;
     }
 
     public function addTransformer(TypeTransformerInterface $transformer): void
     {
-        $type = $transformer::getType();
+        $forBlockPrefix = $transformer::getForBlockPrefix();
 
-        if (array_key_exists($type, $this->transformers)) {
-            throw new RuntimeException(sprintf('Transformer for type %s is already registered.', $type));
+        if (array_key_exists($forBlockPrefix, $this->transformers)) {
+            throw new RuntimeException(sprintf('Transformer for block prefix %s is already registered.', $forBlockPrefix));
         }
 
-        $this->transformers[$type] = $transformer;
+        $this->transformers[$forBlockPrefix] = $transformer;
     }
 
-    public function resolve(FormInterface $form): TypeTransformerInterface
+    public function resolve(FormView $formView): TypeTransformerInterface
     {
-        $type = $form->getConfig()->getType()->getInnerType()::class;
-
-        if (!array_key_exists($type, $this->transformers)) {
-            throw new RuntimeException(sprintf('Transformer for type %s could not be found.', $type));
+        if ($formView->parent === null) {
+            return $this->transformers['form'];
         }
 
-        return $this->transformers[$type];
+        $blockPrefixes = $formView->vars['block_prefixes'];
+        $blockPrefix = $blockPrefixes[count($blockPrefixes) - 2];
+
+        if (!array_key_exists($blockPrefix, $this->transformers)) {
+            throw new RuntimeException(sprintf('Transformer for block prefix %s could not be found.', $blockPrefix));
+        }
+
+        return $this->transformers[$blockPrefix];
     }
 
     public function transform(FormInterface $form): array
     {
-        $transformer = $this->resolve($form);
+        $formView = $form->createView();
+        $transformer = $this->resolve($formView);
 
-        return $transformer->transform($form);
+        return $transformer->transform($form, $formView);
     }
 }
