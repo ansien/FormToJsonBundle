@@ -2,7 +2,7 @@
 
 namespace Ansien\FormToJsonBundle;
 
-use Ansien\FormToJsonBundle\DependencyInjection\CompilerPass\TestCompilerPass;
+use Ansien\FormToJsonBundle\DependencyInjection\CompilerPass\TransformerCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -12,6 +12,6 @@ class FormToJsonBundle extends Bundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new TestCompilerPass());
+        $container->addCompilerPass(new TransformerCompilerPass());
     }
 }
