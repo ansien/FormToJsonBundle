@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-class RapidFormExtension extends Extension
+class FormToJsonExtension extends Extension
 {
     /**
      * @throws Exception
