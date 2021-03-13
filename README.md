@@ -41,7 +41,7 @@ class ExampleController extends AbstractController
     #[Route('/example', methods: ['GET'])]
     public function __invoke(Request $request): JsonResponse
     {
-        $example = new Example();
+        $example = new Example('Hello!');
         $form = $this->createForm(ExampleType::class, $example);
         
         return new JsonResponse($this->formTransformer->transform($form));
