@@ -5,7 +5,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/ansien/form-to-json-bundle.svg)](https://packagist.org/packages/ansien/form-to-json-bundle)
 ![GitHub](https://img.shields.io/github/license/ansien/FormToJsonBundle)
 
-This bundle will allow you to transform a Symfony form into JSON.
+This bundle will allow you to transform Symfony forms into JSON.
 
 ## Installation
 You can install the package via Composer:
