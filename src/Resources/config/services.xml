@@ -125,6 +125,7 @@
         <!-- Group -->
         <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Group\CollectionTypeTransformer">
             <argument type="service" id="translator"/>
+            <argument type="service" id="Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface"/>
         </service>
         <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Group\RepeatedTypeTransformer">
             <argument type="service" id="translator"/>

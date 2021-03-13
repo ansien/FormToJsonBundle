@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ansien\FormToJsonBundle\Transformer\BuiltIn\Group;
 
 use Ansien\FormToJsonBundle\Transformer\BuiltIn\AbstractTypeTransformer;
-use Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface;
 use RuntimeException;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -24,8 +23,7 @@ class RepeatedTypeTransformer extends AbstractTypeTransformer
     ];
 
     public function __construct(
-        protected TranslatorInterface $translator,
-        protected FormTransformerInterface $formTransformer
+        protected TranslatorInterface $translator
     ) {
     }
 
