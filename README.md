@@ -85,7 +85,7 @@ Example output:
 ```
 
 ## Extending the bundle
-You can create your own form type transformer by making a new service that extends AbstractTypeTransformer, this service will automatically be used while transforming.
+You can create your own form type transformer by making a new service that extends AbstractTypeTransformer and tagging it with `form_to_json_bundle.type_transformer`.
 
 ## Changelog
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
