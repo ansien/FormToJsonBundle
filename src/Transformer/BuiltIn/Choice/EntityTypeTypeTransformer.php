@@ -2,13 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
+namespace Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice;
 
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\AbstractTypeTransformer;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/choice.html
+ * @see https://symfony.com/doc/current/reference/forms/types/entity.html
  */
 class EntityTypeTypeTransformer extends AbstractTypeTransformer
 {
@@ -24,27 +25,14 @@ class EntityTypeTypeTransformer extends AbstractTypeTransformer
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
         $schema = $this->hydrateExtraOptions($form, $schema, [
-            // Inherited
-            'choices',
-            'choice_attr',
-            'choice_filter',
-            'choice_label',
-            'choice_loader',
-            'choice_name',
-            'choice_translation_domain',
-            'choice_value',
-            'expanded',
-            'group_by',
-            'multiple',
-            'placeholder',
-            'preferred_choices',
+            ...ChoiceTypeTypeTransformer::OPTIONS,
         ]);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
     }
 
-    public static function getForBlockPrefix(): string
+    public static function getBlockPrefix(): string
     {
         return 'entity';
     }

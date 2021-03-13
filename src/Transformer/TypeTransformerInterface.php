@@ -10,5 +10,5 @@ interface TypeTransformerInterface
 {
     public function transform(FormInterface $form): array;
 
-    public static function getForBlockPrefix(): string;
+    public static function getBlockPrefix(): string;
 }

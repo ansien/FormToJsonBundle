@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
+namespace Ansien\FormToJsonBundle\Transformer\BuiltIn\Text;
 
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\AbstractTypeTransformer;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/number.html
+ * @see https://symfony.com/doc/current/reference/forms/types/integer.html
  */
-class NumberTypeTransformer extends AbstractTypeTransformer
+class IntegerTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(protected TranslatorInterface $translator)
     {
@@ -25,9 +26,6 @@ class NumberTypeTransformer extends AbstractTypeTransformer
         $schema = $this->hydrateBasicOptions($formView, $schema);
         $schema = $this->hydrateExtraOptions($form, $schema, [
             'grouping',
-            'html5',
-            'input',
-            'scale',
             'rounding_mode',
         ]);
         $schema = $this->hydrateErrors($formView, $schema);
@@ -35,8 +33,8 @@ class NumberTypeTransformer extends AbstractTypeTransformer
         return $schema;
     }
 
-    public static function getForBlockPrefix(): string
+    public static function getBlockPrefix(): string
     {
-        return 'number';
+        return 'integer';
     }
 }

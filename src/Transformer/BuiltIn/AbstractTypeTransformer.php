@@ -15,24 +15,27 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
 
     abstract public function transform(FormInterface $form): array;
 
-    abstract public static function getForBlockPrefix(): string;
+    abstract public static function getBlockPrefix(): string;
 
     protected function hydrateBasicOptions(FormView $formView, array $schema): array
     {
-        $schema['id'] = $formView->vars['id'];
-        $schema['name'] = $formView->vars['name'];
-        $schema['full_name'] = $formView->vars['full_name'];
-        $schema['label'] = $formView->vars['label'];
-        $schema['block_prefixes'] = $formView->vars['block_prefixes'];
-        $schema['unique_block_prefix'] = $formView->vars['unique_block_prefix'];
-        $schema['valid'] = $formView->vars['valid'];
-        $schema['value'] = $formView->vars['value'];
-        $schema['required'] = $formView->vars['required'];
-        $schema['help'] = $formView->vars['help'];
-        $schema['compound'] = $formView->vars['compound'];
-        $schema['method'] = $formView->vars['method'];
-        $schema['action'] = $formView->vars['action'];
-        $schema['submitted'] = $formView->vars['submitted'];
+        $schema['id'] = $formView->vars['id'] ?? null;
+        $schema['name'] = $formView->vars['name'] ?? null;
+        $schema['label'] = $formView->vars['label'] ?? null;
+        $schema['unique_block_prefix'] = $formView->vars['unique_block_prefix'] ?? null;
+        $schema['value'] = $formView->vars['value'] ?? null;
+
+//        if (!isset($formView->vars['required'])) {
+//            dump($formView->vars['name']);
+//            exit;
+//        }
+
+        $schema['required'] = $formView->vars['required'] ?? null;
+        $schema['help'] = $formView->vars['help'] ?? null;
+        $schema['compound'] = $formView->vars['compound'] ?? null;
+        $schema['method'] = $formView->vars['method'] ?? null;
+        $schema['action'] = $formView->vars['action'] ?? null;
+        $schema['attr'] = $formView->vars['attr'] ?? null;
 
         return $schema;
     }
@@ -54,7 +57,7 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
     {
         $schema['errors'] = [];
 
-        foreach ($formView->vars['errors'] as $error) {
+        foreach ($formView->vars['errors'] ?? [] as $error) {
             $translateResult = $this->translator->trans($error->getMessage(), $error->getMessageParameters());
             if ($translateResult !== null) {
                 $schema['errors'][] = $translateResult;

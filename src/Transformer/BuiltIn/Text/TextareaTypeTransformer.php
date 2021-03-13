@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
+namespace Ansien\FormToJsonBundle\Transformer\BuiltIn\Text;
 
-use Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface;
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\AbstractTypeTransformer;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/text.html
+ * @see https://symfony.com/doc/current/reference/forms/types/textarea.html
  */
-class TextTypeTransformer extends AbstractTypeTransformer implements TypeTransformerInterface
+class TextareaTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(protected TranslatorInterface $translator)
     {
@@ -29,8 +29,8 @@ class TextTypeTransformer extends AbstractTypeTransformer implements TypeTransfo
         return $schema;
     }
 
-    public static function getForBlockPrefix(): string
+    public static function getBlockPrefix(): string
     {
-        return 'text';
+        return 'textarea';
     }
 }

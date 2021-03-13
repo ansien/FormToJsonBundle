@@ -1,6 +1,6 @@
 {
     "name": "ansien/form-to-json-bundle",
-    "description": "Convert Symfony forms to JSON with ease",
+    "description": "Convert Symfony forms to JSON",
     "keywords": [
         "ansien",
         "form-to-json-bundle",
@@ -8,7 +8,7 @@
         "bundle",
         "form"
     ],
-    "version": "0.0.4",
+    "version": "1.0.0",
     "type": "symfony-bundle",
     "require": {
         "php": ">=8.0",

@@ -13,39 +13,136 @@
         </service>
 
         <!-- Private services -->
-        <service id="Ansien\FormToJsonBundle\Transformer\Context\TransformerContext"></service>
+        <service id="Ansien\FormToJsonBundle\Transformer\Context\TransformerContext" />
 
         <!-- Builtin Transformers -->
         <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\FormTypeTransformer">
             <argument type="service" id="translator"/>
             <argument type="service" id="Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface"/>
         </service>
+
         <!-- Text -->
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\TextTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\TextTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\TextareaTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\TextareaTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\EmailTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\EmailTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\IntegerTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\IntegerTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\MoneyTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\MoneyTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\NumberTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\NumberTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\NumberTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\PasswordTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\PercentTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\SearchTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\UrlTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\RangeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\TelTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Text\ColorTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+
         <!-- Choice -->
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\ChoiceTypeTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\ChoiceTypeTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
-        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\EntityTypeTypeTransformer">
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\EntityTypeTypeTransformer">
             <argument type="service" id="translator"/>
         </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\CountryTypeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\LanguageTypeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\LocaleTypeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\TimezoneTypeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice\CurrencyTypeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+
+        <!-- DateTime -->
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\DateTypeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\DateIntervalTypeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\DateTimeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\TimeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\BirthdayTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\WeekTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+
+        <!-- Other -->
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\CheckboxTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\FileTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\DateTime\RadioTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+
+        <!-- Group -->
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Group\CollectionTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Group\RepeatedTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+
+        <!-- Hidden -->
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Hidden\HiddenTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+
+        <!-- Button -->
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Hidden\ButtonTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Hidden\ResetTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\Hidden\SubmitTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+
         <!-- Field Groups -->
         <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\CollectionTypeTransformer">
             <argument type="service" id="translator"/>

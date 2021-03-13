@@ -36,7 +36,7 @@ class FormTypeTransformer extends AbstractTypeTransformer
         return $schema;
     }
 
-    public static function getForBlockPrefix(): string
+    public static function getBlockPrefix(): string
     {
         return 'form';
     }

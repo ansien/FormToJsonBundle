@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
+namespace Ansien\FormToJsonBundle\Transformer\BuiltIn\Text;
 
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\AbstractTypeTransformer;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -28,7 +29,7 @@ class EmailTypeTransformer extends AbstractTypeTransformer
         return $schema;
     }
 
-    public static function getForBlockPrefix(): string
+    public static function getBlockPrefix(): string
     {
         return 'email';
     }

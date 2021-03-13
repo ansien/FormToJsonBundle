@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
+namespace Ansien\FormToJsonBundle\Transformer\BuiltIn\Group;
 
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\AbstractTypeTransformer;
 use Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface;
 use RuntimeException;
 use Symfony\Component\Form\FormInterface;
@@ -14,6 +15,16 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class CollectionTypeTransformer extends AbstractTypeTransformer
 {
+    public const OPTIONS = [
+        'allow_add',
+        'allow_delete',
+        'delete_empty',
+        'entry_options',
+        'prototype',
+        'prototype_data',
+        'prototype_name',
+    ];
+
     public function __construct(
         protected TranslatorInterface $translator,
         protected FormTransformerInterface $formTransformer
@@ -37,12 +48,13 @@ class CollectionTypeTransformer extends AbstractTypeTransformer
             $schema['children'][$key] = $this->formTransformer->transform($childForm);
         }
 
+        $schema = $this->hydrateExtraOptions($form, $schema, self::OPTIONS);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
     }
 
-    public static function getForBlockPrefix(): string
+    public static function getBlockPrefix(): string
     {
         return 'collection';
     }

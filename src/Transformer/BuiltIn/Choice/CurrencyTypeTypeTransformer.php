@@ -2,16 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
+namespace Ansien\FormToJsonBundle\Transformer\BuiltIn\Choice;
 
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\AbstractTypeTransformer;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/integer.html
+ * @see https://symfony.com/doc/current/reference/forms/types/currency.html
  */
-class IntegerTypeTransformer extends AbstractTypeTransformer
+class CurrencyTypeTypeTransformer extends AbstractTypeTransformer
 {
+    public const OPTIONS = [
+        'choice_translation_locale',
+    ];
+
     public function __construct(protected TranslatorInterface $translator)
     {
     }
@@ -24,16 +29,16 @@ class IntegerTypeTransformer extends AbstractTypeTransformer
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
         $schema = $this->hydrateExtraOptions($form, $schema, [
-            'grouping',
-            'rounding_mode',
+            ...ChoiceTypeTypeTransformer::OPTIONS,
+            ...self::OPTIONS,
         ]);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
     }
 
-    public static function getForBlockPrefix(): string
+    public static function getBlockPrefix(): string
     {
-        return 'integer';
+        return 'currency';
     }
 }

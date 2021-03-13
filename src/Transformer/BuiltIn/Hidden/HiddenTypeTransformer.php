@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
+namespace Ansien\FormToJsonBundle\Transformer\BuiltIn\Hidden;
 
+use Ansien\FormToJsonBundle\Transformer\BuiltIn\AbstractTypeTransformer;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * @see https://symfony.com/doc/current/reference/forms/types/textarea.html
+ * @see https://symfony.com/doc/current/reference/forms/types/hidden.html
  */
-class TextareaTypeTransformer extends AbstractTypeTransformer
+class HiddenTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(protected TranslatorInterface $translator)
     {
@@ -28,8 +29,8 @@ class TextareaTypeTransformer extends AbstractTypeTransformer
         return $schema;
     }
 
-    public static function getForBlockPrefix(): string
+    public static function getBlockPrefix(): string
     {
-        return 'textarea';
+        return 'hidden';
     }
 }

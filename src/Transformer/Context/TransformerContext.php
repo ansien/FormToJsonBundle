@@ -17,11 +17,7 @@ class TransformerContext
 
     public function addTransformer(TypeTransformerInterface $transformer): void
     {
-        $forBlockPrefix = $transformer::getForBlockPrefix();
-
-        if (array_key_exists($forBlockPrefix, $this->transformers)) {
-            throw new RuntimeException(sprintf('Transformer for block prefix %s is already registered.', $forBlockPrefix));
-        }
+        $forBlockPrefix = $transformer::getBlockPrefix();
 
         $this->transformers[$forBlockPrefix] = $transformer;
     }
