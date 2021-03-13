@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
 
-use Ansien\FormToJsonBundle\Transformer\Context\FormResolver;
+use Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface;
 use RuntimeException;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -17,14 +16,15 @@ class CollectionTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(
         protected TranslatorInterface $translator,
-        protected FormResolver $resolver
+        protected FormTransformerInterface $formTransformer
     ) {
     }
 
-    public function transform(FormInterface $form, FormView $formView): array
+    public function transform(FormInterface $form): array
     {
         $schema = [];
 
+        $formView = $form->createView();
         $config = $form->getConfig();
 
         if ($config->getAttribute('prototype') === null) {
@@ -34,9 +34,7 @@ class CollectionTypeTransformer extends AbstractTypeTransformer
         $schema = $this->hydrateBasicOptions($formView, $schema);
 
         foreach ($config->getAttribute('prototype') as $key => $childForm) {
-            $childFormView = $childForm->createView();
-            $transformer = $this->resolver->resolve($childFormView);
-            $schema['children'][$key] = $transformer->transform($childForm, $childFormView);
+            $schema['children'][$key] = $this->formTransformer->transform($childForm);
         }
 
         $schema = $this->hydrateErrors($formView, $schema);

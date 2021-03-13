@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
 
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -17,9 +16,11 @@ class DateTypeTransformer extends AbstractTypeTransformer
     {
     }
 
-    public function transform(FormInterface $form, FormView $formView): array
+    public function transform(FormInterface $form): array
     {
         $schema = [];
+
+        $formView = $form->createView();
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
         $schema = $this->hydrateErrors($formView, $schema);

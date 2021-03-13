@@ -13,7 +13,7 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
 {
     protected TranslatorInterface $translator;
 
-    abstract public function transform(FormInterface $form, FormView $formView): array;
+    abstract public function transform(FormInterface $form): array;
 
     abstract public static function getForBlockPrefix(): string;
 
@@ -26,7 +26,6 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
         $schema['block_prefixes'] = $formView->vars['block_prefixes'];
         $schema['unique_block_prefix'] = $formView->vars['unique_block_prefix'];
         $schema['valid'] = $formView->vars['valid'];
-        $schema['data'] = $formView->vars['data'];
         $schema['value'] = $formView->vars['value'];
         $schema['required'] = $formView->vars['required'];
         $schema['help'] = $formView->vars['help'];

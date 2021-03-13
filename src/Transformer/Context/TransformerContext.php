@@ -7,26 +7,13 @@ namespace Ansien\FormToJsonBundle\Transformer\Context;
 use Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface;
 use RuntimeException;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
-class FormResolver implements FormResolverInterface
+class TransformerContext
 {
     /**
      * @var TypeTransformerInterface[]
      */
     private array $transformers = [];
-
-    private TranslatorInterface $translator;
-
-    public function __construct(iterable $transformers, TranslatorInterface $translator)
-    {
-        foreach ($transformers as $transformer) {
-            $this->addTransformer($transformer);
-        }
-
-        $this->translator = $translator;
-    }
 
     public function addTransformer(TypeTransformerInterface $transformer): void
     {
@@ -39,8 +26,10 @@ class FormResolver implements FormResolverInterface
         $this->transformers[$forBlockPrefix] = $transformer;
     }
 
-    public function resolve(FormView $formView): TypeTransformerInterface
+    public function getTransformer(FormInterface $form): TypeTransformerInterface
     {
+        $formView = $form->createView();
+
         if ($formView->parent === null) {
             return $this->transformers['form'];
         }
@@ -53,13 +42,5 @@ class FormResolver implements FormResolverInterface
         }
 
         return $this->transformers[$blockPrefix];
-    }
-
-    public function transform(FormInterface $form): array
-    {
-        $formView = $form->createView();
-        $transformer = $this->resolve($formView);
-
-        return $transformer->transform($form, $formView);
     }
 }

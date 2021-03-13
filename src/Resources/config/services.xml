@@ -5,12 +5,51 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <defaults public="false" autoconfigure="true" autowire="true"/>
         <!-- Public services -->
-        <service id="Ansien\FormToJsonBundle\Transformer\Context\FormResolverInterface"
-                 class="Ansien\FormToJsonBundle\Transformer\Context\FormResolver"
+        <service id="Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface"
+                 class="Ansien\FormToJsonBundle\Transformer\Service\FormTransformer"
                  public="true">
-            <argument type="tagged_iterator" tag="form_to_json_bundle.type_transformer"/>
+            <argument type="service" id="Ansien\FormToJsonBundle\Transformer\Context\TransformerContext"/>
+        </service>
+
+        <!-- Private services -->
+        <service id="Ansien\FormToJsonBundle\Transformer\Context\TransformerContext"></service>
+
+        <!-- Builtin Transformers -->
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\FormTypeTransformer">
+            <argument type="service" id="translator"/>
+            <argument type="service" id="Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface"/>
+        </service>
+        <!-- Text -->
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\TextTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\TextareaTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\EmailTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\IntegerTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\MoneyTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\NumberTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <!-- Choice -->
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\ChoiceTypeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\EntityTypeTypeTransformer">
+            <argument type="service" id="translator"/>
+        </service>
+        <!-- Field Groups -->
+        <service id="Ansien\FormToJsonBundle\Transformer\BuiltIn\CollectionTypeTransformer">
+            <argument type="service" id="translator"/>
+            <argument type="service" id="Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface"/>
         </service>
         <!-- Transformers -->
         <instanceof id="Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface">

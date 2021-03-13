@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
 
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -17,15 +16,14 @@ class EntityTypeTypeTransformer extends AbstractTypeTransformer
     {
     }
 
-    public function transform(FormInterface $form, FormView $formView): array
+    public function transform(FormInterface $form): array
     {
         $schema = [];
 
+        $formView = $form->createView();
+
         $schema = $this->hydrateBasicOptions($formView, $schema);
         $schema = $this->hydrateExtraOptions($form, $schema, [
-            'class',
-            'em',
-            'query_builder',
             // Inherited
             'choices',
             'choice_attr',
