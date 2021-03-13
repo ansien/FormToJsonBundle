@@ -1,4 +1,4 @@
-# FormToJsonBundle - Convert Symfony forms to JSON!
+# FormToJsonBundle
 
 [comment]: <> (![GitHub Workflow Status &#40;branch&#41;]&#40;https://img.shields.io/github/workflow/status/ansien/FormToJsonBundle/Tests/master?label=Tests&logo=Tests&#41;)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/ansien/form-to-json-bundle.svg)](https://packagist.org/packages/ansien/form-to-json-bundle)
