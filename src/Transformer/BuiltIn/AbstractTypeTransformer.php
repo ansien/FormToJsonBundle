@@ -24,12 +24,6 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
         $schema['label'] = $formView->vars['label'] ?? null;
         $schema['unique_block_prefix'] = $formView->vars['unique_block_prefix'] ?? null;
         $schema['value'] = $formView->vars['value'] ?? null;
-
-//        if (!isset($formView->vars['required'])) {
-//            dump($formView->vars['name']);
-//            exit;
-//        }
-
         $schema['required'] = $formView->vars['required'] ?? null;
         $schema['help'] = $formView->vars['help'] ?? null;
         $schema['compound'] = $formView->vars['compound'] ?? null;
