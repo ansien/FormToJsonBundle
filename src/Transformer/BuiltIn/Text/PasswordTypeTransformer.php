@@ -13,6 +13,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class PasswordTypeTransformer extends AbstractTypeTransformer
 {
+    public const OPTIONS = [
+        'always_empty',
+    ];
+
     public function __construct(protected TranslatorInterface $translator)
     {
     }
@@ -24,9 +28,7 @@ class PasswordTypeTransformer extends AbstractTypeTransformer
         $formView = $form->createView();
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
-        $schema = $this->hydrateExtraOptions($form, $schema, [
-            'always_empty',
-        ]);
+        $schema = $this->hydrateExtraOptions($form, $schema, self::OPTIONS);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;

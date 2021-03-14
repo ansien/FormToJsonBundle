@@ -13,6 +13,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class PercentTypeTransformer extends AbstractTypeTransformer
 {
+    public const OPTIONS = [
+        'rounding_mode',
+        'html5',
+        'scale',
+        'symbol',
+        'type',
+    ];
+
     public function __construct(protected TranslatorInterface $translator)
     {
     }
@@ -24,13 +32,7 @@ class PercentTypeTransformer extends AbstractTypeTransformer
         $formView = $form->createView();
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
-        $schema = $this->hydrateExtraOptions($form, $schema, [
-            'rounding_mode',
-            'html5',
-            'scale',
-            'symbol',
-            'type',
-        ]);
+        $schema = $this->hydrateExtraOptions($form, $schema, self::OPTIONS);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;

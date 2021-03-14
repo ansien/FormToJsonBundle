@@ -13,6 +13,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class IntegerTypeTransformer extends AbstractTypeTransformer
 {
+    public const OPTIONS = [
+        'grouping',
+        'rounding_mode',
+    ];
+
     public function __construct(protected TranslatorInterface $translator)
     {
     }
@@ -24,10 +29,7 @@ class IntegerTypeTransformer extends AbstractTypeTransformer
         $formView = $form->createView();
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
-        $schema = $this->hydrateExtraOptions($form, $schema, [
-            'grouping',
-            'rounding_mode',
-        ]);
+        $schema = $this->hydrateExtraOptions($form, $schema, self::OPTIONS);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;

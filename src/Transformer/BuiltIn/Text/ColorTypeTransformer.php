@@ -13,6 +13,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class ColorTypeTransformer extends AbstractTypeTransformer
 {
+    public const OPTIONS = [
+        'html5',
+    ];
+
     public function __construct(protected TranslatorInterface $translator)
     {
     }
@@ -24,9 +28,7 @@ class ColorTypeTransformer extends AbstractTypeTransformer
         $formView = $form->createView();
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
-        $schema = $this->hydrateExtraOptions($form, $schema, [
-            'html5',
-        ]);
+        $schema = $this->hydrateExtraOptions($form, $schema, self::OPTIONS);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;

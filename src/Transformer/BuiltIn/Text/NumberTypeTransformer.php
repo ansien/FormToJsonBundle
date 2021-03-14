@@ -13,6 +13,14 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class NumberTypeTransformer extends AbstractTypeTransformer
 {
+    public const OPTIONS = [
+        'grouping',
+        'html5',
+        'input',
+        'scale',
+        'rounding_mode',
+    ];
+
     public function __construct(protected TranslatorInterface $translator)
     {
     }
@@ -24,13 +32,7 @@ class NumberTypeTransformer extends AbstractTypeTransformer
         $formView = $form->createView();
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
-        $schema = $this->hydrateExtraOptions($form, $schema, [
-            'grouping',
-            'html5',
-            'input',
-            'scale',
-            'rounding_mode',
-        ]);
+        $schema = $this->hydrateExtraOptions($form, $schema, self::OPTIONS);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;

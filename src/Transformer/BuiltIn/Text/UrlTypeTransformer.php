@@ -13,6 +13,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class UrlTypeTransformer extends AbstractTypeTransformer
 {
+    public const OPTIONS = [
+        'default_protocol',
+    ];
+
     public function __construct(protected TranslatorInterface $translator)
     {
     }
@@ -24,9 +28,7 @@ class UrlTypeTransformer extends AbstractTypeTransformer
         $formView = $form->createView();
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
-        $schema = $this->hydrateExtraOptions($form, $schema, [
-            'default_protocol',
-        ]);
+        $schema = $this->hydrateExtraOptions($form, $schema, self::OPTIONS);
         $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
