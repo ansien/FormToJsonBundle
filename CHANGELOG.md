@@ -2,6 +2,9 @@
 
 All notable changes to `form-to-json-bundle` will be documented in this file
 
+## 1.0.3 - 2020-03-15
+- Added type to schema
+
 ## 1.0.3 - 2020-03-14
 - Expanded schema
 
