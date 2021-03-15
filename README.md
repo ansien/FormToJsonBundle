@@ -52,15 +52,15 @@ class ExampleController extends AbstractController
 Example output:
 ```json
 {
-    "id": "create_example_command",
-    "name": "create_example_command",
+    "id": "create_example",
+    "name": "create_example",
     "type": "form",
     "disabled": false,
     "label": null,
     "label_format": null,
     "label_html": false,
     "multipart": false,
-    "unique_block_prefix": "_create_example_command",
+    "unique_block_prefix": "_create_example",
     "row_attr": [],
     "translation_domain": null,
     "label_translation_parameters": [],
@@ -86,7 +86,7 @@ Example output:
     "attr": [],
     "children": {
         "name": {
-            "id": "create_example_command_name",
+            "id": "create_example_name",
             "name": "name",
             "type": "text",
             "disabled": false,
@@ -94,7 +94,7 @@ Example output:
             "label_format": null,
             "label_html": false,
             "multipart": false,
-            "unique_block_prefix": "_create_example_command_name",
+            "unique_block_prefix": "_create_example_name",
             "row_attr": [],
             "translation_domain": null,
             "label_translation_parameters": [],
