@@ -19,8 +19,12 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
 
     protected function hydrateBasicOptions(FormView $formView, array $schema): array
     {
+        $blockPrefixes = $formView->vars['block_prefixes'];
+        $type = $blockPrefixes[count($blockPrefixes) - 2];
+
         $schema['id'] = $formView->vars['id'] ?? null;
         $schema['name'] = $formView->vars['name'] ?? null;
+        $schema['type'] = $type;
         $schema['disabled'] = $formView->vars['disabled'] ?? null;
         $schema['label'] = $formView->vars['label'] ?? null;
         $schema['label_format'] = $formView->vars['label_format'] ?? null;

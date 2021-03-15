@@ -52,35 +52,71 @@ class ExampleController extends AbstractController
 Example output:
 ```json
 {
-    "id": "example",
-    "name": "example",
-    "label": "Example form",
-    "unique_block_prefix": "_example",
-    "value": null,
+    "id": "create_example_command",
+    "name": "create_example_command",
+    "type": "form",
+    "disabled": false,
+    "label": null,
+    "label_format": null,
+    "label_html": false,
+    "multipart": false,
+    "unique_block_prefix": "_create_example_command",
+    "row_attr": [],
+    "translation_domain": null,
+    "label_translation_parameters": [],
+    "attr_translation_parameters": [],
+    "valid": true,
+    "value": {
+        "name": null,
+        "exampleValue": null,
+        "exampleCountry": null,
+        "exampleDate": null
+    },
     "required": true,
+    "size": null,
+    "label_attr": [],
     "help": null,
+    "help_attr": [],
+    "help_html": false,
+    "help_translation_parameters": [],
     "compound": true,
     "method": "POST",
     "action": "",
+    "submitted": false,
     "attr": [],
     "children": {
-        "text": {
-            "id": "example_text",
-            "name": "text",
+        "name": {
+            "id": "create_example_command_name",
+            "name": "name",
+            "type": "text",
+            "disabled": false,
             "label": null,
-            "unique_block_prefix": "_example_text",
-            "value": "Hello!",
+            "label_format": null,
+            "label_html": false,
+            "multipart": false,
+            "unique_block_prefix": "_create_example_command_name",
+            "row_attr": [],
+            "translation_domain": null,
+            "label_translation_parameters": [],
+            "attr_translation_parameters": [],
+            "valid": true,
+            "value": "",
             "required": true,
+            "size": null,
+            "label_attr": [],
             "help": null,
+            "help_attr": [],
+            "help_html": false,
+            "help_translation_parameters": [],
             "compound": false,
             "method": "POST",
             "action": "",
-            "attr": {
-                "class": "test-class"
-            },
+            "submitted": false,
+            "attr": [],
             "errors": []
         }
-    }
+    },
+    "errors": []
 }
 ```
 

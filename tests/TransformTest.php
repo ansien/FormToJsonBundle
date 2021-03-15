@@ -50,6 +50,7 @@ class TransformTest extends FormToJsonBundleTestCase
     {
       "id": "test",
       "name": "test",
+      "type": "super_form",
       "disabled": false,
       "label": null,
       "label_format": null,
@@ -78,6 +79,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "text": {
           "id": "test_text",
           "name": "text",
+          "type": "text",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -107,6 +109,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "textarea": {
           "id": "test_textarea",
           "name": "textarea",
+          "type": "textarea",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -136,6 +139,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "email": {
           "id": "test_email",
           "name": "email",
+          "type": "email",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -165,6 +169,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "integer": {
           "id": "test_integer",
           "name": "integer",
+          "type": "integer",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -198,6 +203,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "money": {
           "id": "test_money",
           "name": "money",
+          "type": "money",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -235,6 +241,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "number": {
           "id": "test_number",
           "name": "number",
+          "type": "number",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -271,6 +278,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "password": {
           "id": "test_password",
           "name": "password",
+          "type": "password",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -303,6 +311,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "percent": {
           "id": "test_percent",
           "name": "percent",
+          "type": "percent",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -339,6 +348,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "search": {
           "id": "test_search",
           "name": "search",
+          "type": "search",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -368,6 +378,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "url": {
           "id": "test_url",
           "name": "url",
+          "type": "url",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -402,6 +413,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "range": {
           "id": "test_range",
           "name": "range",
+          "type": "range",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -431,6 +443,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "tel": {
           "id": "test_tel",
           "name": "tel",
+          "type": "tel",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -460,6 +473,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "color": {
           "id": "test_color",
           "name": "color",
+          "type": "color",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -492,6 +506,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "choice": {
           "id": "test_choice",
           "name": "choice",
+          "type": "choice",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -535,6 +550,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "country": {
           "id": "test_country",
           "name": "country",
+          "type": "country",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -579,6 +595,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "language": {
           "id": "test_language",
           "name": "language",
+          "type": "language",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -624,6 +641,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "locale": {
           "id": "test_locale",
           "name": "locale",
+          "type": "locale",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -668,6 +686,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "timezone": {
           "id": "test_timezone",
           "name": "timezone",
+          "type": "timezone",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -713,6 +732,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "currency": {
           "id": "test_currency",
           "name": "currency",
+          "type": "currency",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -757,6 +777,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "date": {
           "id": "test_date",
           "name": "date",
+          "type": "date",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -864,6 +885,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "dateInterval": {
           "id": "test_dateInterval",
           "name": "dateInterval",
+          "type": "dateinterval",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -1288,6 +1310,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "dateTime": {
           "id": "test_dateTime",
           "name": "dateTime",
+          "type": "datetime",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -1351,6 +1374,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "time": {
           "id": "test_time",
           "name": "time",
+          "type": "time",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -1554,6 +1578,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "birthday": {
           "id": "test_birthday",
           "name": "birthday",
+          "type": "birthday",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -1771,6 +1796,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "week": {
           "id": "test_week",
           "name": "week",
+          "type": "week",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -1891,6 +1917,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "checkbox": {
           "id": "test_checkbox",
           "name": "checkbox",
+          "type": "checkbox",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -1926,6 +1953,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "file": {
           "id": "test_file",
           "name": "file",
+          "type": "file",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -1958,6 +1986,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "radio": {
           "id": "test_radio",
           "name": "radio",
+          "type": "radio",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -1993,6 +2022,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "collection": {
           "id": "test_collection",
           "name": "collection",
+          "type": "collection",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -2033,6 +2063,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "repeated": {
           "id": "test_repeated",
           "name": "repeated",
+          "type": "repeated",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -2072,6 +2103,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "hidden": {
           "id": "test_hidden",
           "name": "hidden",
+          "type": "hidden",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -2101,6 +2133,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "button": {
           "id": "test_button",
           "name": "button",
+          "type": "button",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -2130,6 +2163,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "reset": {
           "id": "test_reset",
           "name": "reset",
+          "type": "reset",
           "disabled": false,
           "label": null,
           "label_format": null,
@@ -2159,6 +2193,7 @@ class TransformTest extends FormToJsonBundleTestCase
         "submit": {
           "id": "test_submit",
           "name": "submit",
+          "type": "submit",
           "disabled": false,
           "label": null,
           "label_format": null,
