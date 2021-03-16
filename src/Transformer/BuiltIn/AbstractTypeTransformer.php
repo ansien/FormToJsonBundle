@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
 
 use Ansien\FormToJsonBundle\Transformer\TypeTransformerInterface;
+use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -53,11 +54,32 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
         return $schema;
     }
 
+    protected function hydrateChoicesOption(FormView $formView, array $schema): array
+    {
+        $schema['options']['choices'] = [];
+
+        foreach ($formView->vars['choices'] as $choiceView) {
+            if ($choiceView instanceof ChoiceGroupView) {
+                foreach ($choiceView->choices as $choiceItem) {
+                    $schema['options']['choices'][] = [
+                        'label' => $choiceItem->label,
+                        'value' => $choiceItem->value,
+                    ];
+                }
+            } else {
+                $schema['options']['choices'][] = [
+                    'label' => $choiceView->label,
+                    'value' => $choiceView->value,
+                ];
+            }
+        }
+
+        return $schema;
+    }
+
     protected function hydrateExtraOptions(FormInterface $form, array $schema, array $options): array
     {
         $config = $form->getConfig();
-
-        $schema['options'] = [];
 
         foreach ($options as $option) {
             $schema['options'][$option] = $config->getOption($option);

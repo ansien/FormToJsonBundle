@@ -20,8 +20,6 @@ class CollectionTypeTransformer extends AbstractTypeTransformer
         'allow_delete',
         'delete_empty',
         'entry_options',
-        'prototype',
-        'prototype_data',
         'prototype_name',
     ];
 

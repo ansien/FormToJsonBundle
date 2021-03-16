@@ -14,7 +14,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ChoiceTypeTypeTransformer extends AbstractTypeTransformer
 {
     public const OPTIONS = [
-        'choices',
         'choice_attr',
         'choice_filter',
         'choice_label',
@@ -39,6 +38,7 @@ class ChoiceTypeTypeTransformer extends AbstractTypeTransformer
         $formView = $form->createView();
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
+        $schema = $this->hydrateChoicesOption($formView, $schema);
         $schema = $this->hydrateExtraOptions($form, $schema, self::OPTIONS);
         $schema = $this->hydrateErrors($formView, $schema);
 
