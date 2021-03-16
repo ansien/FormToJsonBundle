@@ -29,6 +29,7 @@ class CountryTypeTypeTransformer extends AbstractTypeTransformer
         $formView = $form->createView();
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
+        $schema = $this->hydrateChoicesOption($formView, $schema);
         $schema = $this->hydrateExtraOptions($form, $schema, [
             ...ChoiceTypeTypeTransformer::OPTIONS,
             ...self::OPTIONS,
