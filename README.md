@@ -52,26 +52,21 @@ class ExampleController extends AbstractController
 Example output:
 ```json
 {
-    "id": "create_example",
-    "name": "create_example",
-    "type": "form",
+  "schema": {
+    "id": "test",
+    "name": "test",
+    "type": "super_form",
     "disabled": false,
     "label": null,
     "label_format": null,
     "label_html": false,
-    "multipart": false,
-    "unique_block_prefix": "_create_example",
+    "multipart": true,
+    "unique_block_prefix": "_test",
     "row_attr": [],
     "translation_domain": null,
     "label_translation_parameters": [],
     "attr_translation_parameters": [],
     "valid": true,
-    "value": {
-        "name": null,
-        "exampleValue": null,
-        "exampleCountry": null,
-        "exampleDate": null
-    },
     "required": true,
     "size": null,
     "label_attr": [],
@@ -85,38 +80,47 @@ Example output:
     "submitted": false,
     "attr": [],
     "children": {
-        "name": {
-            "id": "create_example_name",
-            "name": "name",
-            "type": "text",
-            "disabled": false,
-            "label": null,
-            "label_format": null,
-            "label_html": false,
-            "multipart": false,
-            "unique_block_prefix": "_create_example_name",
-            "row_attr": [],
-            "translation_domain": null,
-            "label_translation_parameters": [],
-            "attr_translation_parameters": [],
-            "valid": true,
-            "value": "",
-            "required": true,
-            "size": null,
-            "label_attr": [],
-            "help": null,
-            "help_attr": [],
-            "help_html": false,
-            "help_translation_parameters": [],
-            "compound": false,
-            "method": "POST",
-            "action": "",
-            "submitted": false,
-            "attr": [],
-            "errors": []
-        }
-    },
-    "errors": []
+      "text": {
+        "id": "test_text",
+        "name": "text",
+        "type": "text",
+        "disabled": false,
+        "label": null,
+        "label_format": null,
+        "label_html": false,
+        "multipart": false,
+        "unique_block_prefix": "_test_text",
+        "row_attr": [],
+        "translation_domain": null,
+        "label_translation_parameters": [],
+        "attr_translation_parameters": [],
+        "valid": true,
+        "required": true,
+        "size": null,
+        "label_attr": [],
+        "help": null,
+        "help_attr": [],
+        "help_html": false,
+        "help_translation_parameters": [],
+        "compound": false,
+        "method": "POST",
+        "action": "",
+        "submitted": false,
+        "attr": []
+      }
+    }
+  },
+  "values": {
+    "text": "Test 123"
+  },
+  "errors": {
+    "_global": [
+      "Test root error"
+    ],
+    "text": [
+      "Test error"
+    ]
+  }
 }
 ```
 
