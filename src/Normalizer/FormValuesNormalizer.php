@@ -39,8 +39,8 @@ class FormValuesNormalizer implements NormalizerInterface
 
             $data = (object) [];
             foreach ($formView->children as $name => $child) {
-                if ($form->has($name)) {
-                    $data->{$name} = $this->getValues($form->get($name), $child);
+                if ($form->has((string) $name)) {
+                    $data->{$name} = $this->getValues($form->get((string) $name), $child);
                 }
             }
 
