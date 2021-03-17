@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Ansien\FormToJsonBundle\Transformer\BuiltIn;
 
+use Ansien\FormToJsonBundle\Normalizer\FormErrorsNormalizer;
+use Ansien\FormToJsonBundle\Normalizer\FormValuesNormalizer;
 use Ansien\FormToJsonBundle\Transformer\Service\FormTransformerInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
@@ -15,7 +18,7 @@ class FormTypeTransformer extends AbstractTypeTransformer
 {
     public function __construct(
         protected TranslatorInterface $translator,
-        protected FormTransformerInterface $formTransformer
+        protected FormTransformerInterface $formTransformer,
     ) {
     }
 
@@ -25,13 +28,19 @@ class FormTypeTransformer extends AbstractTypeTransformer
 
         $formView = $form->createView();
 
-        $schema = $this->hydrateBasicOptions($formView, $schema);
+        $schema['schema'] = $this->hydrateBasicOptions($formView, $schema);
 
         foreach ($form->all() as $key => $childForm) {
-            $schema['children'][$key] = $this->formTransformer->transform($childForm);
+            $schema['schema']['children'][$key] = $this->formTransformer->transform($childForm);
         }
 
-        $schema = $this->hydrateErrors($formView, $schema);
+        $valuesNormalizer = [new FormValuesNormalizer()];
+        $valuesSerializer = new Serializer($valuesNormalizer);
+        $schema['values'] = $valuesSerializer->normalize($form);
+
+        $errorsNormalizer = [new FormErrorsNormalizer($this->translator)];
+        $errorsSerializer = new Serializer($errorsNormalizer);
+        $schema['errors'] = $errorsSerializer->normalize($form);
 
         return $schema;
     }

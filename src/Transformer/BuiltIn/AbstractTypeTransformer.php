@@ -37,7 +37,6 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
         $schema['label_translation_parameters'] = $formView->vars['label_translation_parameters'] ?? null;
         $schema['attr_translation_parameters'] = $formView->vars['attr_translation_parameters'] ?? null;
         $schema['valid'] = $formView->vars['valid'] ?? null;
-        $schema['value'] = $formView->vars['value'] ?? null;
         $schema['required'] = $formView->vars['required'] ?? null;
         $schema['size'] = $formView->vars['size'] ?? null;
         $schema['label_attr'] = $formView->vars['label_attr'] ?? null;
@@ -83,22 +82,6 @@ abstract class AbstractTypeTransformer implements TypeTransformerInterface
 
         foreach ($options as $option) {
             $schema['options'][$option] = $config->getOption($option);
-        }
-
-        return $schema;
-    }
-
-    protected function hydrateErrors(FormView $formView, array $schema): array
-    {
-        $schema['errors'] = [];
-
-        foreach ($formView->vars['errors'] ?? [] as $error) {
-            $translateResult = $this->translator->trans($error->getMessage(), $error->getMessageParameters());
-            if ($translateResult !== null) {
-                $schema['errors'][] = $translateResult;
-            } else {
-                $schema['errors'][] = $error->getMessage();
-            }
         }
 
         return $schema;

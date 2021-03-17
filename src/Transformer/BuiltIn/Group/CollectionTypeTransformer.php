@@ -47,7 +47,6 @@ class CollectionTypeTransformer extends AbstractTypeTransformer
         }
 
         $schema = $this->hydrateExtraOptions($form, $schema, self::OPTIONS);
-        $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
     }

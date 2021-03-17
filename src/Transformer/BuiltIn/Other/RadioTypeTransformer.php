@@ -25,7 +25,6 @@ class RadioTypeTransformer extends AbstractTypeTransformer
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
         $schema = $this->hydrateExtraOptions($form, $schema, CheckboxTypeTransformer::OPTIONS);
-        $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
     }

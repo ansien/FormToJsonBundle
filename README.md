@@ -134,6 +134,7 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 ## Credits
 - [Andries](https://github.com/ansien)
+- [Limenius](https://github.com/Limenius)
 - [All Contributors](../../contributors)
 
 ## License

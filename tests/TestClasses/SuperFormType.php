@@ -47,7 +47,9 @@ class SuperFormType extends AbstractType
     {
         $builder
             // Text
-            ->add('text', TextType::class)
+            ->add('text', TextType::class, [
+                'data' => 'Test 123',
+            ])
             ->add('textarea', TextareaType::class)
             ->add('email', EmailType::class)
             ->add('integer', IntegerType::class)

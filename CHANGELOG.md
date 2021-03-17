@@ -2,7 +2,11 @@
 
 All notable changes to `form-to-json-bundle` will be documented in this file
 
-## 1.0.5- 2020-03-16
+## 1.0.6 - 2020-03-16
+- Changed schema
+- Added better value & error normalizers
+
+## 1.0.5 - 2020-03-16
 - Added ChoiceGroupView handling
 
 ## 1.0.4 - 2020-03-15

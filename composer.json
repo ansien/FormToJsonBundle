@@ -8,13 +8,14 @@
         "bundle",
         "form"
     ],
-    "version": "1.0.5",
+    "version": "1.0.6",
     "type": "symfony-bundle",
     "require": {
         "php": ">=8.0",
         "symfony/config": "^5.2",
         "symfony/form": "^5.2",
         "symfony/framework-bundle": "^5.2",
+        "symfony/serializer": "^5.2",
         "symfony/translation": "^5.2"
     },
     "require-dev": {

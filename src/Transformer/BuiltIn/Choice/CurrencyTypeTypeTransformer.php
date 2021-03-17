@@ -33,7 +33,6 @@ class CurrencyTypeTypeTransformer extends AbstractTypeTransformer
             ...ChoiceTypeTypeTransformer::OPTIONS,
             ...self::OPTIONS,
         ]);
-        $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
     }

@@ -25,7 +25,6 @@ class BirthdayTypeTransformer extends AbstractTypeTransformer
 
         $schema = $this->hydrateBasicOptions($formView, $schema);
         $schema = $this->hydrateExtraOptions($form, $schema, DateTypeTransformer::OPTIONS);
-        $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
     }

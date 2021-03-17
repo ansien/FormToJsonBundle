@@ -29,7 +29,6 @@ class EntityTypeTypeTransformer extends AbstractTypeTransformer
         $schema = $this->hydrateExtraOptions($form, $schema, [
             ...ChoiceTypeTypeTransformer::OPTIONS,
         ]);
-        $schema = $this->hydrateErrors($formView, $schema);
 
         return $schema;
     }
